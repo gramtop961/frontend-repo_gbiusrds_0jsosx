@@ -1,28 +1,32 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
+import Home from './components/Home.jsx';
+import FranchiseEPS from './components/FranchiseEPS.jsx';
+import FranchiseIndia1 from './components/FranchiseIndia1.jsx';
+import FranchiseFindi from './components/FranchiseFindi.jsx';
+import FranchiseHitachi from './components/FranchiseHitachi.jsx';
+import Blog from './components/Blog.jsx';
+import BlogPost from './components/BlogPost.jsx';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
+    <BrowserRouter>
+      <div className="min-h-screen flex flex-col bg-neutral-950 text-white">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/franchise/eps" element={<FranchiseEPS />} />
+            <Route path="/franchise/india1" element={<FranchiseIndia1 />} />
+            <Route path="/franchise/findi" element={<FranchiseFindi />} />
+            <Route path="/franchise/hitachi" element={<FranchiseHitachi />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-    </div>
-  )
+    </BrowserRouter>
+  );
 }
-
-export default App
